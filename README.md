@@ -1,2 +1,5 @@
 # symfony-user-permission
-The permissions system for users in symfony
+
+```console
+composer require ggbb/symfony-user-permission
+```

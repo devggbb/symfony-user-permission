@@ -23,5 +23,5 @@
             "email": "devggbb@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }

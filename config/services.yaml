@@ -1,0 +1,8 @@
+parameters:
+  ggbb_user_permission.author.email: 'devggbb@gmail.com'
+
+services:
+  Ggbb\SymfonyUserPermission\Command\CreateDefaultUserRoleCommand:
+    autowire: true
+    tags:
+      -  { name: console.command }

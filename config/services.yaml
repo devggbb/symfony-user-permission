@@ -7,6 +7,20 @@ services:
     tags:
       -  { name: console.command }
 
-  Ggbb\SymfonyUserPermission\Security\UserProvider:
-    autowire: true      # Automatically injects dependencies in your services.
-    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+  Ggbb\SymfonyUserPermission\EventListener\RequestSubscriber:
+
+  ggbb.user_permission.user_service:
+    class: Ggbb\SymfonyUserPermission\Service\PermissionService
+    autowire: true
+    autoconfigure: true
+
+  ggbb.user_permission.user_provider:
+    class: Ggbb\SymfonyUserPermission\Security\Provider\UserProvider
+    autowire: true
+
+  ggbb.user_permission.security.permission_voter:
+    class: Ggbb\SymfonyUserPermission\Security\Voter\PermissionVoter
+    tags: ['security.voter']
+    arguments:
+      - ggbb.user_permission.user_service
+    autowire: true

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Security;
+namespace Ggbb\SymfonyUserPermission\Security\Provider;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Ggbb\SymfonyUserPermission\GgbbUserPermissionBundle;
@@ -29,11 +29,11 @@ class UserProvider implements UserProviderInterface
 
     public function refreshUser(UserInterface $user): UserInterface
     {
-        throw new \Exception('TODO: fill in refreshUser() inside ' . __FILE__);
+        return $user;
     }
 
     public function supportsClass(string $class): bool
     {
-        return User::class === $class || is_subclass_of($class, User::class);
+        return UserInterface::class === $class;
     }
 }

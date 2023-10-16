@@ -2,10 +2,12 @@
 
 namespace Ggbb\SymfonyUserPermission;
 
+use Ggbb\SymfonyUserPermission\Service\PermissionService;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
+use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 class GgbbUserPermissionBundle extends AbstractBundle
 {
@@ -31,6 +33,13 @@ class GgbbUserPermissionBundle extends AbstractBundle
 
         $containerConfigurator->parameters()->set(self::CONFIG_USER, $config['entity']['user']);
         $containerConfigurator->parameters()->set(self::CONFIG_USER_ROLE, $config['entity']['user_role']);
-    //    dd($config['user_role_repository']);
+        $containerBuilder->setDefinitions();
+       // dump('Test');
+//        /** @var PermissionService $res */
+//        $res = $containerBuilder->get('ggbb.user_permission.user_service');
+//       // $res1 = $containerBuilder->get(TagAwareCacheInterface::class);
+//        dd($containerBuilder->get);
+//
+//        dump($res->isPermission('asdfasdf'));
     }
 }

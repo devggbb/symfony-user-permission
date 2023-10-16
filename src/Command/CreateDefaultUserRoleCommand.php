@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[AsCommand(
-    name: 'permission:create-default-user-role',
+    name: 'role:create-default-user-role',
     description: '',
 )]
 class CreateDefaultUserRoleCommand extends Command

@@ -22,13 +22,13 @@ class PermissionService
         return true;
     }
 
-    public function isPermission(string $attribute, mixed $subject = null): bool
+    public function isPermission(string $attribute): bool
     {
         if (!$this->hisPermission($attribute)) {
             return false;
         }
 
-        if (!$this->getPermission($attribute, $subject)) {
+        if (!$this->getPermission($attribute)) {
             return false;
         }
 
@@ -45,7 +45,7 @@ class PermissionService
         return $attributeParts;
     }
 
-    public function getPermission(string $attribute, mixed $subject = null): ?PermissionInterface
+    public function getPermission(string $attribute): ?PermissionInterface
     {
         $attributeParts = $this->getExplodeNamePermission($attribute);
         if (!$attributeParts) {
@@ -60,11 +60,6 @@ class PermissionService
         /** @var PermissionGroupInterface $permissionGroup */
         $permissionGroup = new $permissionGroupClassName();
         $permission = $permissionGroup->getPermission($attribute);
-
-        if ($permission->getUserField()) {
-            // TODO: Доделать
-            dd('Доделать');
-        }
 
         return $permission;
     }

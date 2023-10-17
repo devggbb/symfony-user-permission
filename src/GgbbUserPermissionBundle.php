@@ -39,25 +39,7 @@ class GgbbUserPermissionBundle extends AbstractBundle
         $containerConfigurator->parameters()->set(self::CONFIG_USER, $config['entity']['user']);
         $containerConfigurator->parameters()->set(self::CONFIG_USER_ROLE, $config['entity']['user_role']);
 
-
         $definition = $containerBuilder->getDefinition('ggbb.user_permission.user_service');
         $definition->setArgument('$permissionMapping', PermissionMappingGenerator::generating($config['mapping']['namespace'], $config['mapping']['permissions_dir']));
-
-//        $resv = $containerConfigurator->services()->get('ggbb.user_permission.user_service')
-//            ->arg(0, '111111111111');
-        ///dd($resv);
-//            ->get('ggbb.user_permission.user_service')
-//            ->set()
-//            ->arg(0, '1111')
-//            ->arg(1, '2222');
-        ;
-      //  $containerBuilder->setDefinitions();
-       // dump('Test');
-//        /** @var PermissionService $res */
-//        $res = $containerBuilder->get('ggbb.user_permission.user_service');
-//       // $res1 = $containerBuilder->get(TagAwareCacheInterface::class);
-//        dd($containerBuilder->get);
-//
-//        dump($res->isPermission('asdfasdf'));
     }
 }

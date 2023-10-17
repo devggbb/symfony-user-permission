@@ -10,4 +10,8 @@ interface PermissionGroupInterface
      * @return array|PermissionInterface[]
      */
     public function getPermissions(): array;
+    /**
+     * @return PermissionInterface
+     */
+    public function getPermission(string $permissionConst): ?PermissionInterface;
 }

@@ -7,8 +7,6 @@ services:
     tags:
       -  { name: console.command }
 
-  Ggbb\SymfonyUserPermission\EventListener\RequestSubscriber:
-
   ggbb.user_permission.mapping:
     class: Ggbb\SymfonyUserPermission\PermissionMapping\PermissionMapping
 
@@ -29,4 +27,3 @@ services:
     arguments:
       - '@ggbb.user_permission.user_service'
     autowire: true
-    autoconfigure: true

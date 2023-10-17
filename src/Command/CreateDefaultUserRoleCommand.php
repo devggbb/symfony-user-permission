@@ -37,10 +37,10 @@ class CreateDefaultUserRoleCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         if (!$this->container->has(GgbbUserPermissionBundle::CONFIG_USER)) {
-            @trigger_error('Config user not found');
+            throw new \Exception('Config user not found');
         }
         if (!$this->container->has(GgbbUserPermissionBundle::CONFIG_USER_ROLE)) {
-            @trigger_error('Config user_role not found');
+            throw new \Exception('Config user_role not found');
         }
 
         $defaultUserRole = null;
@@ -60,7 +60,7 @@ class CreateDefaultUserRoleCommand extends Command
         }
 
         if (!$defaultUserRole) {
-            @trigger_error('Default user_role not found');
+            throw new \Exception('Default user_role not found');
         }
 
         $userName = $this->container->get(GgbbUserPermissionBundle::CONFIG_USER);

@@ -27,6 +27,10 @@ class PermissionVoter extends Voter
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
+        if (!$this->permissionService->isPermission($attribute, $subject)) {
+            return false;
+        }
+
         /** @var UserRoleFieldInterface $user */
         $user = $this->security->getUser();
         $userRole = $user->getUserRole();

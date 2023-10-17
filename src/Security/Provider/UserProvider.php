@@ -12,8 +12,8 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 class UserProvider implements UserProviderInterface
 {
     public function __construct(
-        private EntityManagerInterface $entityManager,
-        private ContainerBagInterface  $container,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly ContainerBagInterface  $container,
     )
     {
     }

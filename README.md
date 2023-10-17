@@ -9,12 +9,14 @@ php bin/console role:create-default-user-role
 ```
 
 ```
-// ggbb_user_role.yaml
+// ggbb_user_permission.yaml
 ggbb_user_permission:
-    entity:
-        user: App\Entity\User
-        user_role: App\Entity\UserRole
-    ...
+  entity:
+    user: App\Entity\User
+    user_role: App\Entity\UserRole
+  mapping:
+    permissions_dir: '%kernel.project_dir%/src/Permission'
+    namespace: App\Permission
 ```
 
 ```
@@ -57,5 +59,9 @@ class UserRole implements UserRoleInterface
     use RolePermissionFieldTrait;
     ...
 }
+```
+
+```
+// src/Permission/MyPermission.php
 
 ```

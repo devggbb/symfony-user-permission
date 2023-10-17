@@ -2,12 +2,11 @@
 
 namespace Ggbb\SymfonyUserPermission;
 
-use Ggbb\SymfonyUserPermission\Service\PermissionService;
+use Ggbb\SymfonyUserPermission\Permission\PermissionMappingGenerator;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
-use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 class GgbbUserPermissionBundle extends AbstractBundle
 {
@@ -24,6 +23,12 @@ class GgbbUserPermissionBundle extends AbstractBundle
                         ->scalarNode('user_role')->end()
                     ->end()
                 ->end()
+                ->arrayNode('mapping')
+                    ->children()
+                        ->scalarNode('permissions_dir')->end()
+                        ->scalarNode('namespace')->end()
+                    ->end()
+                ->end()
             ->end();
     }
 
@@ -33,7 +38,20 @@ class GgbbUserPermissionBundle extends AbstractBundle
 
         $containerConfigurator->parameters()->set(self::CONFIG_USER, $config['entity']['user']);
         $containerConfigurator->parameters()->set(self::CONFIG_USER_ROLE, $config['entity']['user_role']);
-        $containerBuilder->setDefinitions();
+
+
+        $definition = $containerBuilder->getDefinition('ggbb.user_permission.user_service');
+        $definition->setArgument('$permissionMapping', PermissionMappingGenerator::generating($config['mapping']['namespace'], $config['mapping']['permissions_dir']));
+
+//        $resv = $containerConfigurator->services()->get('ggbb.user_permission.user_service')
+//            ->arg(0, '111111111111');
+        ///dd($resv);
+//            ->get('ggbb.user_permission.user_service')
+//            ->set()
+//            ->arg(0, '1111')
+//            ->arg(1, '2222');
+        ;
+      //  $containerBuilder->setDefinitions();
        // dump('Test');
 //        /** @var PermissionService $res */
 //        $res = $containerBuilder->get('ggbb.user_permission.user_service');

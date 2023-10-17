@@ -2,50 +2,39 @@
 
 namespace Ggbb\SymfonyUserPermission\Security\Voter;
 
+use Ggbb\SymfonyUserPermission\Entity\Interface\UserRoleFieldInterface;
 use Ggbb\SymfonyUserPermission\Service\PermissionService;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use Symfony\Contracts\Cache\TagAwareCacheInterface;
 
 class PermissionVoter extends Voter
 {
     public function __construct(
+        private readonly PermissionService $permissionService,
+        private readonly Security $security,
     )
     {
     }
     protected function supports($attribute, $subject): bool
     {
+        if (!$this->permissionService->hisPermission($attribute) || !$this->security->getUser()) {
+            return false;
+        }
 
-
-        dump('1 Test - '. $attribute);
-        return false;
-
-        dump('1');
-            return  true;
-        dump('Start');
-
-
-        //$res = $this->permissionService->isPermission($attribute);
-
-        dump($res);
-
-
-
-
-
-
-
-
-
-        dd('End');
-
-        //    $pieces = explode("::", $attribute);
-
-
+        return true;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token): bool
     {
-        return false;
+        /** @var UserRoleFieldInterface $user */
+        $user = $this->security->getUser();
+        $userRole = $user->getUserRole();
+
+        if (!in_array($attribute, $userRole->getPermissions())) {
+            return false;
+        }
+
+        return true;
     }
 }

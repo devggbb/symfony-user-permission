@@ -9,8 +9,13 @@ services:
 
   Ggbb\SymfonyUserPermission\EventListener\RequestSubscriber:
 
+  ggbb.user_permission.mapping:
+    class: Ggbb\SymfonyUserPermission\PermissionMapping\PermissionMapping
+
   ggbb.user_permission.user_service:
     class: Ggbb\SymfonyUserPermission\Service\PermissionService
+    arguments:
+      -
     autowire: true
     autoconfigure: true
 
@@ -22,5 +27,6 @@ services:
     class: Ggbb\SymfonyUserPermission\Security\Voter\PermissionVoter
     tags: ['security.voter']
     arguments:
-      - ggbb.user_permission.user_service
+      - '@ggbb.user_permission.user_service'
     autowire: true
+    autoconfigure: true

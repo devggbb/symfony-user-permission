@@ -3,6 +3,7 @@
 namespace Ggbb\SymfonyUserPermission\Security\Provider;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Ggbb\SymfonyUserPermission\Exception\AuthenticationUserNotFoundException;
 use Ggbb\SymfonyUserPermission\GgbbUserPermissionBundle;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
@@ -24,7 +25,12 @@ class UserProvider implements UserProviderInterface
         /** @var UserLoaderInterface $userRepository */
         $userRepository = $this->entityManager->getRepository($userName);
 
-        return $userRepository->loadUserByIdentifier($identifier);
+        $user = $userRepository->loadUserByIdentifier($identifier);
+        if (!$user) {
+            throw new AuthenticationUserNotFoundException();
+        }
+
+        return $user;
     }
 
     public function refreshUser(UserInterface $user): UserInterface

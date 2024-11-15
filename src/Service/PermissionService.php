@@ -1,9 +1,11 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Service;
+declare(strict_types=1);
 
-use Ggbb\SymfonyUserPermission\Permission\Interface\PermissionGroupInterface;
-use Ggbb\SymfonyUserPermission\Permission\Interface\PermissionInterface;
+namespace Ggbb\SymfonyUserPermissionBundle\Service;
+
+use Ggbb\SymfonyUserPermissionBundle\Permission\Interface\PermissionGroupInterface;
+use Ggbb\SymfonyUserPermissionBundle\Permission\Interface\PermissionInterface;
 
 class PermissionService
 {

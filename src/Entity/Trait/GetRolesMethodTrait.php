@@ -1,6 +1,8 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Entity\Trait;
+declare(strict_types=1);
+
+namespace Ggbb\SymfonyUserPermissionBundle\Entity\Trait;
 
 trait GetRolesMethodTrait
 {

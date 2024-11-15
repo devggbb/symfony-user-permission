@@ -1,29 +1,29 @@
 parameters:
-  ggbb_user_permission.author.email: 'devggbb@gmail.com'
+  user_permission.author.email: 'devggbb@gmail.com'
 
 services:
-  Ggbb\SymfonyUserPermission\Command\CreateDefaultUserRoleCommand:
+  Ggbb\SymfonyUserPermissionBundle\Command\CreateDefaultUserRoleCommand:
     autowire: true
     tags:
       -  { name: console.command }
 
-  ggbb.user_permission.mapping:
-    class: Ggbb\SymfonyUserPermission\PermissionMapping\PermissionMapping
+  user_permission.mapping:
+    class: Ggbb\SymfonyUserPermissionBundle\PermissionMapping\PermissionMapping
 
-  ggbb.user_permission.user_service:
-    class: Ggbb\SymfonyUserPermission\Service\PermissionService
+  user_permission.user_service:
+    class: Ggbb\SymfonyUserPermissionBundle\Service\PermissionService
     arguments:
       -
     autowire: true
     autoconfigure: true
 
-  ggbb.user_permission.user_provider:
-    class: Ggbb\SymfonyUserPermission\Security\Provider\UserProvider
+  user_permission.user_provider:
+    class: Ggbb\SymfonyUserPermissionBundle\Security\Provider\UserProvider
     autowire: true
 
-  ggbb.user_permission.security.permission_voter:
-    class: Ggbb\SymfonyUserPermission\Security\Voter\PermissionVoter
+  user_permission.security.permission_voter:
+    class: Ggbb\SymfonyUserPermissionBundle\Security\Voter\PermissionVoter
     tags: ['security.voter']
     arguments:
-      - '@ggbb.user_permission.user_service'
+      - '@user_permission.user_service'
     autowire: true

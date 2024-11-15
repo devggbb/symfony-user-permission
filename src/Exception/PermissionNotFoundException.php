@@ -1,6 +1,8 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Exception;
+declare(strict_types=1);
+
+namespace Ggbb\SymfonyUserPermissionBundle\Exception;
 
 class PermissionNotFoundException extends \Exception
 {

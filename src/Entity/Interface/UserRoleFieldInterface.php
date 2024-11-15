@@ -1,6 +1,8 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Entity\Interface;
+declare(strict_types=1);
+
+namespace Ggbb\SymfonyUserPermissionBundle\Entity\Interface;
 
 interface UserRoleFieldInterface
 {

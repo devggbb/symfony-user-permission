@@ -1,9 +1,11 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Security\Voter;
+declare(strict_types=1);
 
-use Ggbb\SymfonyUserPermission\Entity\Interface\UserRoleFieldInterface;
-use Ggbb\SymfonyUserPermission\Service\PermissionService;
+namespace Ggbb\SymfonyUserPermissionBundle\Security\Voter;
+
+use Ggbb\SymfonyUserPermissionBundle\Entity\Interface\UserRoleFieldInterface;
+use Ggbb\SymfonyUserPermissionBundle\Service\PermissionService;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;

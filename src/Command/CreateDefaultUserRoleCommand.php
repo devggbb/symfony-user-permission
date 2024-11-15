@@ -1,11 +1,13 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Command;
+declare(strict_types=1);
+
+namespace Ggbb\SymfonyUserPermissionBundle\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Ggbb\SymfonyUserPermission\Entity\Interface\UserRoleFieldInterface;
-use Ggbb\SymfonyUserPermission\Entity\Interface\UserRoleInterface;
-use Ggbb\SymfonyUserPermission\GgbbUserPermissionBundle;
+use Ggbb\SymfonyUserPermissionBundle\Entity\Interface\UserRoleFieldInterface;
+use Ggbb\SymfonyUserPermissionBundle\Entity\Interface\UserRoleInterface;
+use Ggbb\SymfonyUserPermissionBundle\SymfonyUserPermissionBundle;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,15 +38,15 @@ class CreateDefaultUserRoleCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
-        if (!$this->container->has(GgbbUserPermissionBundle::CONFIG_USER)) {
+        if (!$this->container->has(SymfonyUserPermissionBundle::CONFIG_USER)) {
             throw new \Exception('Config user not found');
         }
-        if (!$this->container->has(GgbbUserPermissionBundle::CONFIG_USER_ROLE)) {
+        if (!$this->container->has(SymfonyUserPermissionBundle::CONFIG_USER_ROLE)) {
             throw new \Exception('Config user_role not found');
         }
 
         $defaultUserRole = null;
-        $userRoleName = $this->container->get(GgbbUserPermissionBundle::CONFIG_USER_ROLE);
+        $userRoleName = $this->container->get(SymfonyUserPermissionBundle::CONFIG_USER_ROLE);
         foreach (self::USER_ROLES as $role) {
             /** @var UserRoleInterface $userRole */
             $userRole = new $userRoleName();
@@ -63,7 +65,7 @@ class CreateDefaultUserRoleCommand extends Command
             throw new \Exception('Default user_role not found');
         }
 
-        $userName = $this->container->get(GgbbUserPermissionBundle::CONFIG_USER);
+        $userName = $this->container->get(SymfonyUserPermissionBundle::CONFIG_USER);
         $userRepository = $this->entityManager->getRepository($userName);
         $users = $userRepository->findBy(['userRole' => null]);
         /** @var UserRoleFieldInterface|UserInterface $user */

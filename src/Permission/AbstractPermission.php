@@ -1,10 +1,12 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Permission;
+declare(strict_types=1);
 
-use Ggbb\SymfonyUserPermission\Exception\PermissionNotFoundException;
-use Ggbb\SymfonyUserPermission\Permission\Interface\PermissionGroupInterface;
-use Ggbb\SymfonyUserPermission\Permission\Interface\PermissionInterface;
+namespace Ggbb\SymfonyUserPermissionBundle\Permission;
+
+use Ggbb\SymfonyUserPermissionBundle\Exception\PermissionNotFoundException;
+use Ggbb\SymfonyUserPermissionBundle\Permission\Interface\PermissionGroupInterface;
+use Ggbb\SymfonyUserPermissionBundle\Permission\Interface\PermissionInterface;
 
 abstract class AbstractPermission implements PermissionGroupInterface
 {

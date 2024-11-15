@@ -1,6 +1,8 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Permission;
+declare(strict_types=1);
+
+namespace Ggbb\SymfonyUserPermissionBundle\Permission;
 
 final class PermissionMappingGenerator
 {
@@ -9,7 +11,6 @@ final class PermissionMappingGenerator
         $files = [];
         /** @var \SplFileInfo $file */
         foreach (new \DirectoryIterator($permissionsDirPath) as $file) {
-            //   dump($file);
             if ($file->isFile()) {
                 $typeFile = substr($file->getFilename(), -4);
                 if ($typeFile !== '.php') {

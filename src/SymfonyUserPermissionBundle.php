@@ -1,17 +1,19 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission;
+declare(strict_types=1);
 
-use Ggbb\SymfonyUserPermission\Permission\PermissionMappingGenerator;
+namespace Ggbb\SymfonyUserPermissionBundle;
+
+use Ggbb\SymfonyUserPermissionBundle\Permission\PermissionMappingGenerator;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 
-class GgbbUserPermissionBundle extends AbstractBundle
+class SymfonyUserPermissionBundle extends AbstractBundle
 {
-    const CONFIG_USER = 'ggbb_user_permission.entity.user';
-    const CONFIG_USER_ROLE = 'ggbb_user_permission.entity.user_role';
+    const CONFIG_USER = 'user_permission.entity.user';
+    const CONFIG_USER_ROLE = 'user_permission.entity.user_role';
 
     public function configure(DefinitionConfigurator $definition): void
     {
@@ -32,14 +34,14 @@ class GgbbUserPermissionBundle extends AbstractBundle
             ->end();
     }
 
-    public function loadExtension(array $config, ContainerConfigurator $containerConfigurator, ContainerBuilder $containerBuilder): void
+    public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $containerConfigurator->import(__DIR__ . '/../config/services.yaml');
+        $container->import(__DIR__ . '/../config/services.yaml');
 
-        $containerConfigurator->parameters()->set(self::CONFIG_USER, $config['entity']['user']);
-        $containerConfigurator->parameters()->set(self::CONFIG_USER_ROLE, $config['entity']['user_role']);
+        $container->parameters()->set(self::CONFIG_USER, $config['entity']['user']);
+        $container->parameters()->set(self::CONFIG_USER_ROLE, $config['entity']['user_role']);
 
-        $definition = $containerBuilder->getDefinition('ggbb.user_permission.user_service');
+        $definition = $builder->getDefinition('user_permission.user_service');
         $definition->setArgument('$permissionMapping', PermissionMappingGenerator::generating($config['mapping']['namespace'], $config['mapping']['permissions_dir']));
     }
 }

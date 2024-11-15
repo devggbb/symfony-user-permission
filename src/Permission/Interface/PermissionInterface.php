@@ -1,6 +1,8 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Permission\Interface;
+declare(strict_types=1);
+
+namespace Ggbb\SymfonyUserPermissionBundle\Permission\Interface;
 
 interface PermissionInterface
 {

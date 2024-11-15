@@ -1,8 +1,10 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Entity\Interface;
+declare(strict_types=1);
 
-use Ggbb\SymfonyUserPermission\Permission\Interface\PermissionInterface;
+namespace Ggbb\SymfonyUserPermissionBundle\Entity\Interface;
+
+use Ggbb\SymfonyUserPermissionBundle\Permission\Interface\PermissionInterface;
 
 interface UserRoleInterface
 {

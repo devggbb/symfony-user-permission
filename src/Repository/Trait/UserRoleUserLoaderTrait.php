@@ -1,6 +1,8 @@
 <?php
 
-namespace Ggbb\SymfonyUserPermission\Repository\Trait;
+declare(strict_types=1);
+
+namespace Ggbb\SymfonyUserPermissionBundle\Repository\Trait;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
